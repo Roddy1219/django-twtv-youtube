@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
@@ -36,7 +36,7 @@
 
     <div class="container">
 
-      <!-- Static navbar -->
+
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -50,18 +50,19 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="{% url 'index' %}">Home</a></li>
-              <li><a href="{% url 'tv-url' 0 %}">中视新闻</a></li>
-              <li><a href="{% url 'tv-url' 1 %}">民视新闻</a></li>
-              <li><a href="{% url 'tv-url' 2 %}">三立新闻</a></li>
-              </li>
-            </ul>
+              <li  {%  if request.path == '/'  %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a></li>
 
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
+              <li  {% if tvno == "0"  and request.path != '/' %} class="active" {% endif %}><a href="{% url 'tv-url' 0 %}">中视新闻</a></li>
+
+              <li  {% if tvno == "1"  %} class="active" {% endif %}><a href="{% url 'tv-url' 1 %}">民视新闻</a></li>
+
+              <li  {% if tvno == "2"  %} class="active" {% endif %}><a href="{% url 'tv-url' 2 %}">三立新闻</a></li>
+            </ul>
+          </div>
+        </div>
       </nav>
 
-      <!-- Main component for a primary marketing message or call to action -->
+
       <div class="jumbotron">
         <h3>{{ tv.name }}</h3>
           <div align="center">
@@ -72,14 +73,12 @@
       <div class="panel panel-default">
           <div class="panel-footer"> 当前时间{{ now | date:"Y-m-d H:m:s"  }}</div>
       </div>
-    </div> <!-- /container -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    </div>
+
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
