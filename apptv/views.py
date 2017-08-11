@@ -13,7 +13,7 @@ class IndexView(View):
             {'name': '三立新闻', 'tvcode': '15IKxpj1gQA'},
         ]
 
-        now = datetime.datetime.now()
+
         tvno = tvno
         tv = tv_list[int(tvno)]
         tv_number = int(tvno)
