@@ -51,12 +51,9 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li  {%  if request.path == '/'  %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a></li>
-
-              <li  {% if tvno == "0"  and request.path != '/' %} class="active" {% endif %}><a href="{% url 'tv-url' 0 %}">中视新闻</a></li>
-
-              <li  {% if tvno == "1"  %} class="active" {% endif %}><a href="{% url 'tv-url' 1 %}">民视新闻</a></li>
-
-              <li  {% if tvno == "2"  %} class="active" {% endif %}><a href="{% url 'tv-url' 2 %}">三立新闻</a></li>
+              {%  for tvloop in tv_list %}
+                    <li  {% if tv_number == forloop.counter0  and request.path != '/' %} class="active" {% endif %}><a href="{% url 'tv-url' forloop.counter0 %}">{{ tvloop.name }}</a></li>
+              {% endfor %}
             </ul>
           </div>
         </div>

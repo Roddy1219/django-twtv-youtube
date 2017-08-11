@@ -16,4 +16,5 @@ class IndexView(View):
         now = datetime.datetime.now()
         tvno = tvno
         tv = tv_list[int(tvno)]
+        tv_number = int(tvno)
         return render(request, 'index.html', locals())
