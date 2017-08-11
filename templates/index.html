@@ -1,7 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,59 +29,73 @@
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div class="container">
+<div class="container">
 
 
-      <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">正在播放{{ tv.name }}</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              {% comment %}
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">正在播放{{ tv.name }}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    {% comment %}
                     forloop.counter0 表示当前循环序列号，counter0是以0开始
               {% endcomment %}
-              <li  {%  if request.path == '/'  %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a></li>
-              {%  for tvloop in tv_list %}
-                    <li  {% if tv_number == forloop.counter0  and request.path != '/' %} class="active" {% endif %}><a href="{% url 'tv-url' forloop.counter0 %}">{{ tvloop.name }}</a></li>
-              {% endfor %}
-            </ul>
-          </div>
+                    <li  {% if request.path == '/' %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a>
+                    </li>
+                    {% for tvloop in tv_list %}
+                        <li  {% if tv_number == forloop.counter0  and request.path != '/' %} class="active" {% endif %}>
+                            <a href="{% url 'tv-url' forloop.counter0 %}">{{ tvloop.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
 
 
-      <div class="jumbotron">
+    <div class="jumbotron">
         <h3>{{ tv.name }}</h3>
-          <div align="center">
-              <iframe width="1024" height="600" src="https://www.youtube.com/embed/{{ tv.tvcode }}?autoplay=1" frameborder="0" allowfullscreen></iframe>
-          </div>
-      </div>
+        <div align="center">
+            <iframe width="1024" height="600" src="https://www.youtube.com/embed/{{ tv.tvcode }}?autoplay=1"
+                    frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
 
-      <div class="panel panel-default">
-          {% comment %}
+    <div class="panel panel-default">
+        {% comment %} lorem [count] [method] [random] 这个方法挺有意思
+         可以生成一些随机字符串 method 支持p 和w    p表示段落，w表示字串
+
+         {% endcomment %}
+
+        {% lorem 20 p random %}
+
+    </div>
+
+    <div class="panel panel-default">
+        {% comment %}
                 此前使用 datetime.now 来获取当前系统时间，template默认就有一个now方法
           {% endcomment %}
 
-          <div class="panel-footer"> 当前时间 {%  now "Y-m-d H:m:s"  %}</div>
-      </div>
+        <div class="panel-footer"> 当前时间 {% now "Y-m-d H:m:s" %}</div>
     </div>
+</div>
 
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
 </html>
