@@ -50,6 +50,9 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              {% comment %}
+                    forloop.counter0 表示当前循环序列号，counter0是以0开始
+              {% endcomment %}
               <li  {%  if request.path == '/'  %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a></li>
               {%  for tvloop in tv_list %}
                     <li  {% if tv_number == forloop.counter0  and request.path != '/' %} class="active" {% endif %}><a href="{% url 'tv-url' forloop.counter0 %}">{{ tvloop.name }}</a></li>
@@ -68,6 +71,10 @@
       </div>
 
       <div class="panel panel-default">
+          {% comment %}
+                此前使用 datetime.now 来获取当前系统时间，template默认就有一个now方法
+          {% endcomment %}
+
           <div class="panel-footer"> 当前时间 {%  now "Y-m-d H:m:s"  %}</div>
       </div>
     </div>
